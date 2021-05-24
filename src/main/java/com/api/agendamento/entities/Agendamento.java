@@ -1,13 +1,7 @@
 package com.api.agendamento.entities;
 
 import lombok.Data;
-import lombok.Getter;
-
 import javax.persistence.*;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name ="tb_agendamento")
@@ -18,15 +12,15 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomeEmpresa;
     private String servico;
     private String data;
     private String horario;
 
-    @OneToMany(mappedBy = "agendamento")
-    List<Carro> carros = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch= FetchType.EAGER)
+    @JoinColumn(name = "id_empresa", foreignKey = @ForeignKey(name = "empresa_fk"))
+    private Empresa empresa;
 
-
-
-
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch= FetchType.EAGER)
+    @JoinColumn(name = "id_carro", foreignKey = @ForeignKey(name = "carro_fk"))
+    private Carro carro;
 }

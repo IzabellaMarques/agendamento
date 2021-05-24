@@ -1,21 +1,23 @@
 package com.api.agendamento.entities;
 
 import lombok.Data;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name ="tb_carro")
+@Table(name ="tb_empresa")
 @Data
-public class Carro {
+public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String marca;
-    private String modelo;
-    private String placa;
-    private String cor;
+    private String nome;
+    private String numero;
+    private String email;
+
 }
